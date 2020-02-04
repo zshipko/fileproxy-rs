@@ -62,6 +62,19 @@ impl Client {
 
         Ok(())
     }
+
+    pub async fn list_files(&self, prefix: Option<&str>) -> Result<Vec<String>, Error> {
+        let client = reqwest::Client::new();
+
+        let url = match prefix {
+            Some(p) => reqwest::Url::parse(&format!("{}?prefix={}", self.addr, p))?,
+            None => reqwest::Url::parse(&self.addr)?
+        };
+
+        let res = client.get(url).send().await?;
+        let list: Vec<String> = res.json().await?;
+        Ok(list)
+    }
 }
 
 #[cfg(test)]
