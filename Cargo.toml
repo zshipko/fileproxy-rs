@@ -1,5 +1,5 @@
 [package]
-name = "fileproxy-rs"
+name = "fileproxy"
 version = "0.1.0"
 authors = ["zach shipko <zachshipko@gmail.com>"]
 edition = "2018"
